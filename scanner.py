@@ -37,11 +37,11 @@ for batch in batches:
                 df=df.dropna()
                 if len(df)<2: continue
                 son_mum=df.index[-1]
-                try:
+                    try:
                     if son_mum.tzinfo is None: son_mum=son_mum.tz_localize("UTC").tz_convert(TZ)
                     else: son_mum=son_mum.astimezone(TZ)
                     if son_mum.date()!=now.date(): continue
-                except: pass
+                    except: pass
                 prev=float(df["Close"].iloc[-2]); curr=float(df["Close"].iloc[-1])
                 high=float(df["High"].iloc[-1]); vol=int(df["Volume"].iloc[-1])
                 pct=(curr-prev)/prev*100; tpct=(high-prev)/prev*100
